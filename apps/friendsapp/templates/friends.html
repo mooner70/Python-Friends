@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+  <title>Friends</title>
+</head>
+
+<body>
+  <div class="container col-6">
+    <h3>Hello, {{request.session.alais}}</h3>
+    <h5>Here is a list of your friends:</h5>
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Alais</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if friends %} {% for friend in friends %}
+        <tr>
+          <td>{{friend.alais}}</td>
+
+          <td>
+            <a class="btn btn-primary btn-sm" href="/user/{{friend.id}}" role="button">View Profile</a>
+            <a class="btn btn-primary btn-sm" href="/remove/user/friends/{{friend.id}}" role="button">Remove</a>
+          </td>
+        </tr>
+        {% endfor %} {% endif %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="container col-6">
+    <h5>Other Users not on your firend's list:</h5>
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Alais</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if people %} {% for people in people %}
+        <tr>
+          <td>
+            <a class="btn btn-primary btn-sm" href="/user/{{people.id}}" role="button">{{people.alais}}</a>
+          </td>
+          <td>
+            <a class="btn btn-primary btn-sm" href="/add/user/friends/{{people.id}}" role="button">Add as Friend</a>
+          </td>
+        </tr>
+        {% endfor %} {% endif %}
+      </tbody>
+    </table>
+    <a class="btn btn-primary btn-sm" href="/logout" role="button">Logout</a>
+
+
+
+  </div>
+  <!--container close tag-->
+
+</body>
+
+</html>
