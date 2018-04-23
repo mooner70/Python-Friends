@@ -10,23 +10,27 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
 
+
   <title>Login/Registration</title>
 
   <body>
     <div class="container col-6">
 
+      <div class="container col-9">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+
       <div class="row">
         <div class="col-6">
           <h1>Login</h1>
           <form action="/login" method="POST">
-            {% csrf_token %} 
-            {% if messages %}
-            <ul class="messages">
-              {% for message in messages %}
-              <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
+            {% csrf_token %}
             <div class="form-group">
               <input type="email" name="email" class="form-control" id="email" placeholder="Email Address">
             </div>
@@ -44,13 +48,7 @@
         <div class="col-6">
           <h1>Register</h1>
           <form action="/registration" method="POST">
-            {% csrf_token %} {% if messages %}
-            <ul class="messages">
-              {% for message in messages %}
-              <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
+            {% csrf_token %}
             <div class="form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Name">
             </div>
